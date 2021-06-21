@@ -1,5 +1,15 @@
 <div class="wrapper">
-				
+
+function time() {
+  var d = new Date();
+  var s = d.getSeconds();
+  var m = d.getMinutes();
+  var h = d.getHours();
+  span.textContent = 
+    ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+}
+
+setInterval(time, 1000);
 				
 				
 				<div style="display: flex; align-content: center; " class="autowide">
@@ -26,12 +36,12 @@
 								Color of the Day: 0000ff
 							</div>
 							
-							<div class="clock">
-								06-21-21 | <span id="hr">12</span>
-								<span>:</span>
-								<span id="min">45</span>
-								<span>:</span>
-								<span id="sec">43</span>
+							var span = document.getElementById('span');
+		   
+									   
+									   
+							<div class="clock" align  = "center">
+								06-21-21 | <span id="span"></span>
 							</div>
 							
 							<div style="text-align: center; font-size: 150%;">
