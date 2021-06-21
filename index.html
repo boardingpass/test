@@ -1,1 +1,199 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		
+			<title>Boarding Pass</title>
+		
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+		
+		
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" href="../_WCF/CSS/main.css">
+		<link rel="stylesheet" href="./CSS/AppStyles.css">
+
+		
+		
+
+		<!--  If authentication type is Siteminder, create the timeout check functions and activate them.	--->
+		
+
+				<script>
+						//  Global variables for use by these functions.
+						var SecondsUntilRefresh = 3630;		//	1 Hour 30 seconds. Siteminder timeout is one hour.
+
+						var LastActivityTime = new Date().getTime();
+						var HasFocus = false;
+
+						//  Check if time has elapsed and if so, reload the current web page.
+						function RefreshCheck ()
+						{
+								var CurrentTime = new Date ().getTime ();
+								if (CurrentTime - LastActivityTime >= SecondsUntilRefresh * 1000
+								&& document.readyState == "complete")
+								{
+										window.location.reload ();
+								}
+						}
+
+						//	Reset the last activity time if there is activity on the page.
+						function ResetActivityTime () {
+							LastActivityTime = new Date ().getTime ();
+							console.log ("ResetActivityTime");
+						}
+
+						//	When the window gets focus, reset the activity time and set flag to indicate
+						//	the window has gotten focus. This function is run only once when the page is
+						//	first loaded.
+						function windowHasFocus () {
+							if (HasFocus == false)
+								ResetActivityTime ();
+							HasFocus = true;
+						}
+
+						//	Set the refresh check function to run every 10 seconds.
+						setInterval (function () {RefreshCheck ();}, 10000);
+
+						//	Attach the functions to event handlers.
+						window.addEventListener("focus", windowHasFocus, false);
+						window.addEventListener("click", ResetActivityTime, false);
+						window.addEventListener("mousemove", ResetActivityTime, false);
+						window.addEventListener("keypress", ResetActivityTime, false);
+				</script>
+		
+		
+		
+		<script type="text/javascript">
+			var d,h,m,s,animate;
+
+			function init(){
+				d=new Date();
+				h=d.getHours();
+				m=d.getMinutes();
+				s=d.getSeconds();
+				clock();
+			};
+
+			function clock(){
+				s++;
+				if(s==60){
+					s=0;
+					m++;
+					if(m==60){
+						m=0;
+						h++;
+						if(h==24){
+							h=0;
+						}
+					}
+				}
+				$('sec',s);
+				$('min',m);
+				$('hr',h);
+				animate=setTimeout(clock,1000);
+			};
+
+			function $(id,val){
+				if(val<10){
+					val='0'+val;
+				}
+				document.getElementById(id).innerHTML=val;
+			};
+
+			window.onload=init;
+		</script>
+		<style>
+			.clock{
+				text-align:center;
+				width:auto;
+				height:auto;
+				font-family:sans-serif;
+    		font-size:25px;
+			}
+
+			main * {
+    		-webkit-print-color-adjust: exact !important;   /* Chrome, Safari */
+    		color-adjust: exact !important;                 /*Firefox*/
+			}
+		</style>
+	</head>
+
+	<body>
+			
+		<main role="main">
+			<div class="wrapper">
+				
+					
+					<h1>Boarding Pass 
+					</h1>
+					<hr>
+				
+					
+					
+
+					<p>To see your current building access status, tap the button below.</p>
+				
+				
+				
+				<div style="display: flex; align-content: center; " class="autowide">
+					
+					<div style="margin: 20px 0px 50px 0px; text-align: center;">
+						
+							<form action="processUserAction.cfm" method="post" name="CCBoardingPass">
+								<input type="hidden" name="IDDataEntry" id="IDDataEntry" value="Y" >
+
+								<input type="submit" name="GetStatus" id="GetStatus" value="GET STATUS" role="button"  	
+									style="background-color: #555; 
+										padding: 15px 32px;
+										margin-right: 10px;
+										margin-bottom: 10px;
+										font-size: 14px; 
+										color: white; 
+										border: none;">
+								
+
+							</form>
+						
+					</div>
+			</div>
+		</main>
+		
+
+<footer role="contentinfo" aria-label="Contact information and copyright notice">
+	<div class="wrapper">
+		<div class="u-font-small u-align-center">
+
+			
+			
+						<a href="https://www.treasury.uillinois.edu/icp/">i-card Programs</a>
+					
+					<span class="u-dot"></span>
+				
+						<a href="tel:+12173331900">217-333-1900</a>
+					
+					<span class="u-dot"></span>
+				
+						<a href="mailto:icardhelp@uillinois.edu">icardhelp@uillinois.edu</a>
+					
+				<br>
+			
+				&copy; 2021 The Board of Trustees of the University of Illinois 
+				<span class="u-dot"></span>
+				
+						<a href="http://www.vpaa.uillinois.edu/policies/web_privacy.cfm">Web privacy notice</a>
+					
+
+		</div>
+	</div>        
+</footer>
+
+	</body>
+</html>
+
+
 
